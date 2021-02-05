@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
+  authenticate :user, lambda { |u| u.user_role == "admin" } do
+    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  end
+  get 'contact/index'
+  get 'about/index'
   resources :line_items
   resources :carts
   resources :products
   devise_for :users, controllers: {
-    registrations: 'users/registrations',
-    sessions: 'users/sessions',
+    registrations: "users/registrations",
+    sessions: "users/sessions",
   }
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'

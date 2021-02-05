@@ -1,29 +1,182 @@
-<h2>Sign up</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Plant Nursery Managment System</title>
+<link rel="shortcut icon" href="assets/favicon.png" type="image/png">
+<!-- custom-theme -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Germinate Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //custom-theme -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link href="assets/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src="assets/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<link href="assets/mislider.css" rel="stylesheet" type="text/css" />
+<link href="assets/mislider-custom.css" rel="stylesheet" type="text/css" />
+<!-- font-awesome-icons -->
+<link href="assets/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome-icons -->
+<link href="//fonts.googleapis.com/css?family=Bree+Serif&amp;subset=latin-ext" rel="stylesheet">
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+</head>
+<style>
+        .card {
+            border: 1px solid #a4dd25;
+        }
+        .card-login {
+            margin-top: 130px;
+            padding: 18px;
+            max-width: 30rem;
+        }
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
+        .card-header {
+            color: #fff;
+            /*background: #ff0000;*/
+            font-family: sans-serif;
+            font-size: 20px;
+            font-weight: 600 !important;
+            margin-top: 10px;
+            border-bottom: 0;
+        }
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+        .input-group-prepend span{
+            width: 50px;
+            background-color: #a4dd25;
+            color: #fff;
+            border:0 !important;
+        }
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+        input:focus{
+            outline: 0 0 0 0  !important;
+            box-shadow: 0 0 0 0 !important;
+        }
+        .form-control {
+            display: block;
+            width: 100%;
+            height: calc(2.25rem + 2px);
+            padding: 0.375rem 0.75rem;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #a4dd25;
+            background-color: transparent;
+            background-clip: padding-box;
+            border: 1px solid #a4dd25;
+            border-radius: 0;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+        .input-group-text {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding: 0.375rem 0.75rem;
+            margin-bottom: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.6;
+            color: #495057;
+            text-align: center;
+            white-space: nowrap;
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            border-radius: 0;
+        }
+</style>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="w3_agile_logo">
+			<h1><a href="localhost:3000"><span>P</span> NM system<i>Plant Nursery Management System</i></a></h1>
+		</div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left:20rem;">
+        <li class="nav-item">
+          <%= link_to "Home", root_url, class:"nav-link",style:"color:#fff;" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "All product", products_path, class:"nav-link", style:"color:#fff;" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "About Us", about_index_path, class:"nav-link", style:"color:#fff;" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Contact Us", contact_index_path, class:"nav-link", style:"color:#fff;" %>
+        </li>
+      </ul>
+    </div>
+</nav>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+<div class="container">
+    <div class="card card-login mx-auto text-center bg-dark">
+        <div class="card-header mx-auto bg-dark">
+            <span> <img src="../assets/avatar2.png" class="mr-3 mt-3 rounded-circle" style="width:90px;"> </span><br/>
+              <span class="logo_title mt-5"> Create An Account </span>
+        </div>
+        <div class="card-body">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= render "users/shared/error_messages", resource: resource %>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <%= f.text_field :fullname, class:"form-control", placeholder:"Your FullName" %>
+                </div>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                    </div>
+                    <%= f.email_field :email, autocomplete: "email", class:"form-control", placeholder:"Your Email" %>
+                </div>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                    </div>
+                    <%= f.text_field :phonenumber, class:"form-control", placeholder:"Your Phone Number" %>
+                </div>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                    </div>
+                    <%= f.text_field :address, class:"form-control", placeholder:"Your address" %>
+                </div>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-genderless"></i></span>
+                    </div>&nbsp;&nbsp;&nbsp;
+                    <%= f.radio_button :gender, 'Male' %> <strong style="color:#a4dd25">Male</strong>&nbsp;&nbsp; <%= f.radio_button :gender, 'Female' %> <strong style="color:#a4dd25">Female</strong>
+                </div>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
+                    </div>
+                    <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"Your New password" %>
+                </div>
+                <div class="input-group form-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
+                    </div>
+                    <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder:"Your Password Comfirmation" %>
+                </div>
+                <div class="form-group">
+                    <%= f.submit "Create An Account", class:"w3ls_more float-right" %>
+                </div>
+            <% end %>
+            <strong style="color:#495057">Have an account?</strong><%= render "devise/shared/links" %>
+        </div>
+    </div>
+</div>
+</body><br><br><br><br><br><br>
+</html>

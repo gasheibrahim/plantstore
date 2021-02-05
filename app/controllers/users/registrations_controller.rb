@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class User::RegistrationsController < Devise::RegistrationsController
+class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -62,7 +62,7 @@ class User::RegistrationsController < Devise::RegistrationsController
   private
 
   def sign_up_params
-    params.require(:user).permit(:fullname, :email, :phonenumber, :address :gender, :password, :password_confirmation)
+    params.require(:user).permit(:fullname, :email, :phonenumber, :address, :gender, :password, :password_confirmation)
   end
 
   def account_update_params

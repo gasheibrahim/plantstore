@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
 
   # GET /carts
@@ -70,5 +71,10 @@ class CartsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def cart_params
       params.fetch(:cart, {})
+    end
+
+    def invalid_cart
+      logger.error "Attempt to access invalid cart #{params[:id]}"
+      redirect_to root_path, notice: "That cart doesn't exist"
     end
 end

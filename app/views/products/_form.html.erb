@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :product_image %>
-    <%= form.text_area :product_image %>
+    <%= form.file_field :product_image, class:"form-control" %>
   </div>
 
   <div class="field">
@@ -37,8 +37,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
   </div>
 
   <div class="actions">

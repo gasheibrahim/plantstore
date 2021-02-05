@@ -19,7 +19,7 @@
     <% @products.each do |product| %>
       <tr>
         <td><%= product.product_name %></td>
-        <td><%= product.product_image %></td>
+        <td><%= image_tag product.product_image.url, style:"height:25rem;" %></td>
         <td><%= product.product_details %></td>
         <td><%= product.sales_price %></td>
         <td><%= product.regular_price %></td>
