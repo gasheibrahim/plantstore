@@ -55,22 +55,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </nav><br><br>
 <div class="container" style="font-size:15px;">
-  <center>
-	  <div class="row">
-	    <div class="col-md-12">
-	      <h3 id="cate">My Cart</h3>
-	    </div>
-	  </div><br>
-  <center>
-  <center>
-  <div class="row">
-    <div class="col-md-12">
-      <%= link_to 'Keep Shopping', products_path, class:'w3ls_more' %>
-    </div>
-  </div><br>
-  <center>
-  <div class="row">
-    <table class="table table-bordered">
+<center>
+      <div class="row">
+        <table class="table table-bordered">
         <thead class="bg-dark">
           <tr>
             <th scope="col" style="color:white;">Image</th>
@@ -79,7 +66,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <th scope="col" style="color:white;">Price</th>
             <th scope="col" style="color:white;">Quantity</th>
             <th scope="col" style="color:white;">SubTotal</th>
-            <th scope="col" style="color:white;">Action</th>
           </tr>
         </thead>
         <%= render(@cart.line_items) %>
@@ -87,23 +73,82 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <td colspan="5"></td>
             <td id="cat" style="color:black;">Total Price:<%= number_to_currency(@cart.total_price, :unit => "RWF") %></td>
         </tr>
-        <tr>
-            <td colspan="5"></td>
-            <% if user_signed_in? %>
-            <td id="cat"><%= link_to 'Check Out', new_order_path(:cart_id => @cart.id), class: "btn btn-success", style:"color:#fff;font-size:15px;" %></td>
-            <% else %>
-            <td id="cat"><%= link_to 'Check Out', new_user_session_path, class: "btn btn-success", style:"color:#fff;font-size:15px;" %></td>
-            <% end %>
-        </tr>
-    </table>
-  </div>
-  <center>
-  <div class="row">
-    <div class="col-md-12">
-      <%= button_to 'Empty Cart', @cart, method: :delete, data: { confirm: "Are you sure? " }, class: "btn btn-danger", style:"font-size:15px;" %>
+        </table>
+      </div>
+    </center>
+  <%= form_with(model: order, local: true) do |form| %>
+  <% if order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
+      <ul>
+      <% order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
     </div>
-  </div>
-  </center>
-</div><br><br><br><br>
+  <% end %>
+  <div class="row">
+      <div class="col-md-6">
+        <% if user_signed_in? %>
+          <div class="card">
+            <div class="card-header bg-dark" style="color:#fff;">
+                Personal Information
+            </div>
+            <div class="card-body">
+              <strong>FullName</strong><p class="card-text"><%= current_user.fullname %></p>
+              <strong>Email</strong><p class="card-text"><%= current_user.email %></p>
+              <strong>PhoneNumber</strong><p class="card-text"><%= current_user.phonenumber %></p>
+              <strong>Address</strong><p class="card-text"><%= current_user.address %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-md-6">
+          <div class="card">
+            <div class="card-header bg-dark" style="color:#fff;">
+                Shipping Address
+            </div>
+            <div class="card-body">
+              <p class="card-text"><strong>Enter Province</strong>:
+                <%= form.text_field :province, class:"form-control", placeholder:"Enter Shipping Province", required:"required" %></p>
+              <p class="card-text"><strong>Enter District</strong>:
+                <%= form.text_field :district, class:"form-control", placeholder:"Enter Shipping District", required:"required" %></p>
+              <p class="card-text"><strong>Enter PhoneNumber</strong>:
+                <%= form.text_field :phonenumber, class:"form-control", placeholder:"Enter Phone Number", required:"required" %></p>
+            </div>
+          </div>
+      </div>
+    </div><br>
+      <div class="container" style="background:#343a40">
+      <div class="row">
+        <div class="col-md-12">
+          <%= form.radio_button :pay_method, 'Contact Seller Before Pay' %> <strong style="font-size: 18px;color:#a4dd25">Contact Seller Before Pay</strong>: <selif style="color:#fff;">Our Sales Team Will Contact You In order To Proced Your Order With 1Hour In Working hours</selif><br />
+          <%= form.radio_button :pay_method, 'Pay With Momo' %> <strong style="font-size: 18px;color:#a4dd25"> Pay With Momo</strong>: <selif style="color:#fff;">Pay With Our MoMo Code And Contact Our Sales Team Inorder To Ship Your Package<br /></selif>
+          <%= form.radio_button :pay_method, 'Pay With Card' %> <strong style="font-size: 18px;color:#a4dd25"> Pay With Card </strong>: <selif style="color:#fff;">Under Constration<br /></selif>
+        </div>
+      </div>
+      </div><br>
+      <div class="row">
+        <div class="col-md-12">
+          <%= form.check_box :accept, class:"largerCheckbox" %><strong style="font-size: 25px;"> Accept</strong>
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="col-md-12">
+          <%= form.hidden_field :user_id, value: current_user.id %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <%= form.hidden_field :cart_id, :value => params[:cart_id] if params[:cart_id]%>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <%= form.submit 'Order Now', class:"w3ls_more", style:"padding:15px;font-size:15px;border-radius:10px;width:150px;" %>
+        </div>
+      </div>
+    </div><br><br><br>
+<% end %>
 </body>
 </html>

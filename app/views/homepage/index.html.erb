@@ -67,7 +67,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<i class="far fa-envelope" aria-hidden="true"></i>
 							<% end %>
 						</li>
-						<li><a href="#" class="w3_agile_vimeo"><i class="fa fa-shopping-cart", aria-hidden="true"></i><sub class="ncarts">[0]</sub></a></li>
+						<li>
+						<% if total_cart_items %>
+							<%= link_to cart_path(@cart), class:"w3_agile_vimeo",style:"" do %>
+							  <i class="fa fa-shopping-cart", aria-hidden="true"></i><sub class="ncarts">[<%= cart_count_over_one %>]</sub>
+							<% end %>
+						<% end %>
+						</li>
 					</ul>
 				</div>
 				<div class="agileits_w3layouts_menu">

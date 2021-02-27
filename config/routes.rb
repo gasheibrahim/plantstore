@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :orders
   authenticate :user, lambda { |u| u.user_role == "admin" } do
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   end

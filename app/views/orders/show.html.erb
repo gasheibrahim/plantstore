@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Province:</strong>
+  <%= @order.province %>
+</p>
+
+<p>
+  <strong>District:</strong>
+  <%= @order.district %>
+</p>
+
+<p>
+  <strong>Phonenumber:</strong>
+  <%= @order.phonenumber %>
+</p>
+
+<p>
+  <strong>Pay method:</strong>
+  <%= @order.pay_method %>
+</p>
+
+<p>
+  <strong>Accept:</strong>
+  <%= @order.accept %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @order.user %>
+</p>
+
+<p>
+  <strong>Cart:</strong>
+  <%= @order.cart %>
+</p>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

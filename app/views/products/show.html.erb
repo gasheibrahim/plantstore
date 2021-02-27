@@ -1,34 +1,93 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Product name:</strong>
-  <%= @product.product_name %>
-</p>
-
-<p>
-  <strong>Product image:</strong>
-  <%= @product.product_image %>
-</p>
-
-<p>
-  <strong>Product details:</strong>
-  <%= @product.product_details %>
-</p>
-
-<p>
-  <strong>Sales price:</strong>
-  <%= @product.sales_price %>
-</p>
-
-<p>
-  <strong>Regular price:</strong>
-  <%= @product.regular_price %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @product.user %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Plant Nursery Managment System</title>
+<link rel="shortcut icon" href="assets/favicon.png" type="image/png">
+<!-- custom-theme -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Germinate Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //custom-theme -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<link href="assets/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src="assets/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<link href="assets/mislider.css" rel="stylesheet" type="text/css" />
+<link href="assets/mislider-custom.css" rel="stylesheet" type="text/css" />
+<!-- font-awesome-icons -->
+<link href="assets/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome-icons -->
+<link href="//fonts.googleapis.com/css?family=Bree+Serif&amp;subset=latin-ext" rel="stylesheet">
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="w3_agile_logo">
+			<h1><a href="localhost:3000"><span>P</span> NM system<i>Plant Nursery Management System</i></a></h1>
+		</div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="margin-left:20rem;">
+        <li class="nav-item">
+          <%= link_to "Home", root_url, class:"nav-link",style:"color:#fff;" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "All product", products_path, class:"nav-link", style:"color:#fff;" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "About Us", about_index_path, class:"nav-link", style:"color:#fff;" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Contact Us", contact_index_path, class:"nav-link", style:"color:#fff;" %>
+        </li>
+      </ul>
+    </div>
+</nav><br><br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 shadow p-3 mb-5 bg-white rounded productshow">
+          <div class="image-gallery">
+            <div id="big">
+              <%= image_tag @product.product_image.url %>
+            </div>  
+          </div> 
+        </div>
+    <div class="col-md-6 shadow p-3 mb-5 bg-white rounded">
+      <h1 style="color:#46a9fa;font-size: 30px;">
+        <%= @product.product_name %>
+      </h1>
+      <h6 class="card-text" style="font-size: 15px;">
+        <strong id="category">Product Description:</strong> <%= @product.product_details.truncate(50) %>
+      </h6>
+      <h5 class="card-text" style="font-size: 15px;">
+        <strong id="category">Price:</strong><%= number_to_currency(@product.sales_price, :unit => "RWF") %>
+      </h5>
+      <h6 id="regular" style="font-size: 15px;">
+        <% if @product.regular_price.present? %>
+          <%= number_to_currency(@product.regular_price, :unit => "RWF") %>
+        <% end %>
+      </h6>
+      <div class="col-md-12">
+        <div class="col-md-4">
+          <%= button_to 'Add to cart', line_items_path(product_id: @product), class:"w3ls_more", style:'padding:15px;font-size:15px;border-radius:10px;width:150px;' %>
+        </div>
+        <div class="col-md-4">
+          <%= button_to 'Pay Now', line_items_path(product_id: @product), class:"w3l_contact", style:'padding:15px;font-size:15px;border-radius:10px;width:150px;' %>
+      </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</body><br><br><br><br><br><br>
+</html>
